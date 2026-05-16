@@ -1,0 +1,742 @@
+/* ===================================
+   Coalition Technologies - Healthcare Dashboard
+   Front End Developer Skills Test
+   Patient: Jessica Taylor
+   =================================== */
+
+/* ===================================
+   RESET & BASE STYLES
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Primary Colors */
+    --color-primary: #01F0FF;
+    --color-primary-light: #D4F5F2;
+    --color-primary-dark: #00B8A6;
+    
+    /* Background Colors */
+    --color-background: #F6F7F8;
+    --color-white: #FFFFFF;
+    --color-chart-bg: #F4F0FE;
+    
+    /* Text Colors */
+    --color-text-primary: #072635;
+    --color-text-secondary: #707070;
+    --color-text-muted: #8E8EA9;
+    
+    /* Border & Dividers */
+    --color-border: #E8E8E8;
+    --color-divider: #EDEDED;
+    
+    /* Chart Colors */
+    --color-systolic: #E66FD2;
+    --color-diastolic: #8C6FE6;
+    
+    /* Diagnostic Card Colors */
+    --color-respiratory-bg: #E0F3FA;
+    --color-respiratory-icon: #072635;
+    --color-temperature-bg: #FFE6E9;
+    --color-temperature-icon: #FF6B6B;
+    --color-heartrate-bg: #FFE6F1;
+    --color-heartrate-icon: #E66FD2;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 20px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 50%;
+    
+    /* Font Sizes */
+    --font-xs: 11px;
+    --font-sm: 13px;
+    --font-base: 14px;
+    --font-md: 16px;
+    --font-lg: 18px;
+    --font-xl: 20px;
+    --font-2xl: 24px;
+    --font-3xl: 30px;
+    
+    /* Font Weights */
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-size: var(--font-base);
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+    line-height: 1.5;
+}
+
+/* ===================================
+   HEADER
+   =================================== */
+
+.header {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md) var(--spacing-2xl);
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-xl);
+    font-weight: var(--font-extrabold);
+    color: var(--color-text-primary);
+}
+
+.logo i {
+    color: var(--color-primary);
+    font-size: 26px;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 11px 18px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    font-size: var(--font-base);
+    font-weight: var(--font-medium);
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: var(--color-primary-light);
+}
+
+.nav-item.active {
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+}
+
+.nav-item i {
+    font-size: var(--font-md);
+}
+
+/* User Profile */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.user-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-name {
+    font-size: var(--font-base);
+    font-weight: var(--font-bold);
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+
+.user-role {
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.2;
+}
+
+.user-divider {
+    width: 1px;
+    height: 40px;
+    background-color: var(--color-divider);
+    margin: 0 var(--spacing-xs);
+}
+
+.user-settings,
+.user-more {
+    font-size: var(--font-lg);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.user-settings:hover,
+.user-more:hover {
+    color: var(--color-text-primary);
+}
+
+/* ===================================
+   MAIN CONTAINER
+   =================================== */
+
+.container {
+    display: grid;
+    grid-template-columns: 300px 1fr 380px;
+    gap: var(--spacing-2xl);
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl);
+}
+
+/* ===================================
+   LEFT SIDEBAR - PATIENTS LIST
+   =================================== */
+
+.sidebar-left {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    height: fit-content;
+}
+
+.patients-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.patients-header h2 {
+    font-size: var(--font-xl);
+    font-weight: var(--font-extrabold);
+    color: var(--color-text-primary);
+}
+
+.patients-header i {
+    font-size: var(--font-lg);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+.patients-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    max-height: 900px;
+    overflow-y: auto;
+}
+
+.patient-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.patient-card:hover {
+    background-color: var(--color-background);
+}
+
+.patient-card.active {
+    background-color: var(--color-primary-light);
+}
+
+.patient-card img {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+.patient-card .patient-info {
+    flex: 1;
+}
+
+.patient-card .patient-name {
+    font-size: var(--font-base);
+    font-weight: var(--font-bold);
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.patient-card .patient-details {
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+}
+
+.patient-card i {
+    color: var(--color-text-secondary);
+    font-size: var(--font-md);
+}
+
+/* ===================================
+   MAIN CONTENT AREA
+   =================================== */
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+}
+
+/* Diagnosis History Section */
+.diagnosis-section {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-header h2 {
+    font-size: var(--font-xl);
+    font-weight: var(--font-extrabold);
+    color: var(--color-text-primary);
+}
+
+.time-filter {
+    padding: 8px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-white);
+    font-size: var(--font-sm);
+    font-family: 'Manrope', sans-serif;
+    color: var(--color-text-primary);
+    cursor: pointer;
+}
+
+/* Chart Container */
+.chart-container {
+    display: flex;
+    gap: var(--spacing-xl);
+    background-color: var(--color-chart-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+}
+
+.chart-wrapper {
+    flex: 1;
+    min-height: 240px;
+}
+
+.chart-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    min-width: 200px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: var(--radius-full);
+}
+
+.systolic-dot {
+    background-color: var(--color-systolic);
+}
+
+.diastolic-dot {
+    background-color: var(--color-diastolic);
+}
+
+.stat-label {
+    font-size: var(--font-base);
+    font-weight: var(--font-bold);
+    color: var(--color-text-primary);
+}
+
+.stat-value {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-bold);
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+
+.stat-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+}
+
+.stat-status i {
+    font-size: var(--font-xs);
+}
+
+.stat-divider {
+    height: 1px;
+    background-color: var(--color-divider);
+    margin: var(--spacing-sm) 0;
+}
+
+/* Diagnostic List - Three Cards */
+.diagnostic-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.diagnostic-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.diagnostic-card.respiratory {
+    background-color: var(--color-respiratory-bg);
+}
+
+.diagnostic-card.temperature {
+    background-color: var(--color-temperature-bg);
+}
+
+.diagnostic-card.heartrate {
+    background-color: var(--color-heartrate-bg);
+}
+
+.card-icon {
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+}
+
+.respiratory .card-icon {
+    background-color: var(--color-primary-light);
+}
+
+.temperature .card-icon {
+    background-color: #FFD4D4;
+}
+
+.heartrate .card-icon {
+    background-color: #FFD4E8;
+}
+
+.card-icon i {
+    font-size: 48px;
+}
+
+.respiratory .card-icon i {
+    color: var(--color-respiratory-icon);
+}
+
+.temperature .card-icon i {
+    color: var(--color-temperature-icon);
+}
+
+.heartrate .card-icon i {
+    color: var(--color-heartrate-icon);
+}
+
+.card-label {
+    font-size: var(--font-md);
+    font-weight: var(--font-medium);
+    color: var(--color-text-primary);
+}
+
+.card-value {
+    font-size: var(--font-3xl);
+    font-weight: var(--font-extrabold);
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+
+.card-status {
+    font-size: var(--font-base);
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-status i {
+    font-size: var(--font-sm);
+}
+
+/* ===================================
+   RIGHT SIDEBAR - PATIENT PROFILE
+   =================================== */
+
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+}
+
+/* Patient Profile Card */
+.patient-profile-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: var(--font-xl);
+    font-weight: var(--font-extrabold);
+    color: var(--color-text-primary);
+    text-align: center;
+}
+
+/* Patient Details Section */
+.patient-details-section {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.detail-item {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+}
+
+.detail-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.detail-icon i {
+    font-size: var(--font-lg);
+    color: var(--color-text-primary);
+}
+
+.detail-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-label {
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-medium);
+}
+
+.detail-value {
+    font-size: var(--font-base);
+    color: var(--color-text-primary);
+    font-weight: var(--font-bold);
+}
+
+/* Lab Results Section */
+.lab-results-section {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+}
+
+.lab-results-section h3 {
+    font-size: var(--font-xl);
+    font-weight: var(--font-extrabold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.lab-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.lab-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--color-background);
+    border-radius: var(--radius-sm);
+}
+
+.lab-result-name {
+    font-size: var(--font-base);
+    font-weight: var(--font-medium);
+    color: var(--color-text-primary);
+}
+
+.lab-result-icon {
+    font-size: var(--font-md);
+    color: var(--color-text-secondary);
+}
+
+.btn-show-all {
+    width: 100%;
+    padding: var(--spacing-md);
+    background-color: var(--color-primary-light);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-base);
+    font-weight: var(--font-semibold);
+    font-family: 'Manrope', sans-serif;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-show-all:hover {
+    background-color: var(--color-primary);
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+/* Tablet */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    
+    .sidebar-left,
+    .sidebar-right {
+        max-width: 100%;
+    }
+    
+    .diagnostic-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-item span {
+        display: none;
+    }
+    
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    .diagnostic-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-container {
+        flex-direction: column;
+    }
+    
+    .chart-stats {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+/* ===================================
+   SCROLLBAR STYLING
+   =================================== */
+
+.patients-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.patients-list::-webkit-scrollbar-track {
+    background: var(--color-background);
+    border-radius: 10px;
+}
+
+.patients-list::-webkit-scrollbar-thumb {
+    background: var(--color-text-muted);
+    border-radius: 10px;
+}
+
+.patients-list::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-secondary);
+}

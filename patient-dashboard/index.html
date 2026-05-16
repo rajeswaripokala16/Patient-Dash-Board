@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Healthcare Dashboard - Jessica Taylor | Tech.Care</title>
+    
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+
+    <!-- Google Fonts - Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>Tech.Care</span>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="nav">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Patients</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Schedule</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Message</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Transactions</span>
+                </a>
+            </nav>
+            
+            <!-- User Profile -->
+            <div class="user-profile">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Jose Simmons" class="user-avatar">
+                <div class="user-info">
+                    <p class="user-name">Dr. Jose Simmons</p>
+                    <p class="user-role">General Practitioner</p>
+                </div>
+                <div class="user-divider"></div>
+                <i class="fas fa-cog user-settings"></i>
+                <i class="fas fa-ellipsis-v user-more"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Left Sidebar: Patients List -->
+        <aside class="sidebar-left">
+            <div class="patients-header">
+                <h2>Patients</h2>
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="patients-list">
+                <!-- Patient cards - Static list -->
+                <div class="patient-card">
+                    <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Emily Williams">
+                    <div class="patient-info">
+                        <p class="patient-name">Emily Williams</p>
+                        <p class="patient-details">Female, 18</p>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                
+                <div class="patient-card">
+                    <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Ryan Johnson">
+                    <div class="patient-info">
+                        <p class="patient-name">Ryan Johnson</p>
+                        <p class="patient-details">Male, 45</p>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                
+                <div class="patient-card">
+                    <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Brandon Mitchell">
+                    <div class="patient-info">
+                        <p class="patient-name">Brandon Mitchell</p>
+                        <p class="patient-details">Male, 36</p>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                
+                <!-- Jessica Taylor - SELECTED -->
+                <div class="patient-card active" id="jessica-card">
+                    <img src="https://fedskillstest.ct.digital/4.png" alt="Jessica Taylor" id="patient-list-photo">
+                    <div class="patient-info">
+                        <p class="patient-name">Jessica Taylor</p>
+                        <p class="patient-details">Female, 28</p>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                
+                <div class="patient-card">
+                    <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Samantha Johnson">
+                    <div class="patient-info">
+                        <p class="patient-name">Samantha Johnson</p>
+                        <p class="patient-details">Female, 56</p>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                
+                <div class="patient-card">
+                    <img src="https://randomuser.me/api/portraits/women/6.jpg" alt="Ashley Martinez">
+                    <div class="patient-info">
+                        <p class="patient-name">Ashley Martinez</p>
+                        <p class="patient-details">Female, 54</p>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <section class="main-content">
+            <!-- Diagnosis History Section -->
+            <div class="diagnosis-section">
+                <div class="section-header">
+                    <h2>Diagnosis History</h2>
+                    <select class="time-filter">
+                        <option>Last 6 months</option>
+                    </select>
+                </div>
+                
+                <!-- Blood Pressure Chart Container -->
+                <div class="chart-container">
+                    <div class="chart-wrapper">
+                        <canvas id="bloodPressureChart"></canvas>
+                    </div>
+                    
+                    <!-- Blood Pressure Stats (Right side) -->
+                    <div class="chart-stats">
+                        <div class="stat-item systolic">
+                            <div class="stat-header">
+                                <span class="stat-dot systolic-dot"></span>
+                                <span class="stat-label">Systolic</span>
+                            </div>
+                            <p class="stat-value" id="systolic-value">--</p>
+                            <p class="stat-status" id="systolic-status">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>--</span>
+                            </p>
+                        </div>
+                        
+                        <div class="stat-divider"></div>
+                        
+                        <div class="stat-item diastolic">
+                            <div class="stat-header">
+                                <span class="stat-dot diastolic-dot"></span>
+                                <span class="stat-label">Diastolic</span>
+                            </div>
+                            <p class="stat-value" id="diastolic-value">--</p>
+                            <p class="stat-status" id="diastolic-status">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>--</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagnostic List (Three Cards) -->
+            <div class="diagnostic-list">
+                <!-- Respiratory Rate Card -->
+                <div class="diagnostic-card respiratory">
+                    <div class="card-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <p class="card-label">Respiratory Rate</p>
+                    <p class="card-value" id="respiratory-value">-- bpm</p>
+                    <p class="card-status" id="respiratory-status">--</p>
+                </div>
+                
+                <!-- Temperature Card -->
+                <div class="diagnostic-card temperature">
+                    <div class="card-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <p class="card-label">Temperature</p>
+                    <p class="card-value" id="temperature-value">--°F</p>
+                    <p class="card-status" id="temperature-status">--</p>
+                </div>
+                
+                <!-- Heart Rate Card -->
+                <div class="diagnostic-card heartrate">
+                    <div class="card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <p class="card-label">Heart Rate</p>
+                    <p class="card-value" id="heartrate-value">-- bpm</p>
+                    <p class="card-status" id="heartrate-status">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>--</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Sidebar: Patient Profile -->
+        <aside class="sidebar-right">
+            <!-- Patient Card -->
+            <div class="patient-profile-card">
+                <img src="https://fedskillstest.ct.digital/4.png" alt="Jessica Taylor" class="profile-photo" id="profile-photo">
+                <h3 class="profile-name" id="profile-name">Jessica Taylor</h3>
+            </div>
+            
+            <!-- Patient Information -->
+            <div class="patient-details-section">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="detail-content">
+                        <p class="detail-label">Date of Birth</p>
+                        <p class="detail-value" id="patient-dob">August 23, 1996</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-venus"></i>
+                    </div>
+                    <div class="detail-content">
+                        <p class="detail-label">Gender</p>
+                        <p class="detail-value" id="patient-gender">Female</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="detail-content">
+                        <p class="detail-label">Contact Info</p>
+                        <p class="detail-value" id="patient-phone">(415) 555-1234</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="detail-content">
+                        <p class="detail-label">Emergency Contacts</p>
+                        <p class="detail-value" id="patient-emergency">(415) 555-5678</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="detail-content">
+                        <p class="detail-label">Insurance Provider</p>
+                        <p class="detail-value" id="patient-insurance">Sunrise Health Assurance</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lab Results Section -->
+            <div class="lab-results-section">
+                <h3>Lab Results</h3>
+                <div class="lab-results-list" id="lab-results">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <button class="btn-show-all">Show All Information</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Your JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>
